@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>W&W Rentals – Untervermietung</title>
+<meta name="description" content="W&W Rentals – Professionelle Untervermietungsservices" />
+
+
+<style>
+:root{
+--bg:#000000;
+--card:#111111;
+--accent:#27e0a7;
+--muted:#9aa4b2;
+--glass: rgba(255,255,255,0.04);
+--radius:14px;
+--max-width:1100px;
+font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:#e6eef6}
+.wrap{max-width:var(--max-width);margin:36px auto;padding:28px}
+
+
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#27e0a7,#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#04263a}
+nav{display:flex;gap:12px;align-items:center}
+nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px}
+nav a:hover{color:var(--accent);background:var(--glass)}
+.cta{background:linear-gradient(90deg,var(--accent),#3b82f6);color:#04263a;padding:8px 14px;border-radius:12px;font-weight:600;text-decoration:none}
+
+
+.burger{display:none;width:44px;height:44px;border-radius:10px;background:var(--glass);align-items:center;justify-content:center;cursor:pointer}
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:28px}
+.card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:0 4px 20px rgba(0,0,0,0.6)}
+h1{font-size:32px;margin:0 0 8px}
+p.lead{color:var(--muted);margin:0 0 18px}
+
+
+footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+
+
+form{display:flex;flex-direction:column;gap:10px}
+input,textarea,button{border:0;background:rgba(255,255,255,0.05);padding:10px;border-radius:10px;color:inherit}
+input::placeholder,textarea::placeholder{color:rgba(230,238,246,0.35)}
+button{cursor:pointer;padding:10px 14px;background:var(--accent);color:#04263a;font-weight:600}
+
+
+@media (max-width:900px){
+.hero{grid-template-columns:1fr;}
+nav{display:none}
+.burger{display:flex}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="brand">
+<div class="logo">W&W</div>
+<div>
+<div style="font-weight:700">W&W Rentals</div>
+<div style="font-size:12px;color:var(--muted)">Untervermietung · Kurzzeitmiete · Immobilienservice</div>
+</div>
+</div>
+
+
+<nav>
+<a href="#about"></a>
+<a href="#services"></a>
+<a href="#contact"></a>
+<a class="cta" href="#contact">Anfragen</a>
+</nav>
+
+
+<div class="burger" id="burger">☰</div>
+</header>
+
+
+<main class="hero">
+<section class="card">
+<h1>W&W Rentals – Ihre Untervermietungslösung</h1>
+<p class="lead">Professionelle und einfache Untervermietung für Wohnungen und Zimmer. Ideal für Menschen, die flexibel bleiben möchten und einen zuverlässigen Partner suchen.</p>
+</section>
+
+
+<aside class="card">
+<h3 style="margin-top:0">Kontakt</h3>
+<form id="contactForm">
+<input type="text" id="name" placeholder="Ihr Name" required />
+<input type="email" id="email" placeholder="E‑Mail" required />
+<textarea id="message" rows="6" placeholder="Ihre Anfrage" required></textarea>
+<button type="submit">Absenden</button>
+<div id="formMsg" style="font-size:13px;color:var(--muted);margin-top:8px"></div>
+</form>
+</aside>
+</main>
+
+
+<section class="card" id="services" style="margin-top:20px">
+<h3 style="margin-top:0">Unsere Leistungen</h3>
+<ul>
+<li>Vermittlung von temporären Mietern</li>
+<li>Organisation von Besichtigungen</li>
+<li>Professionelle Präsentation Ihrer Immobilie</li>
+<li>Flexible Mietmodelle</li>
+</ul>
+</section>
+<footer>
+© <span id="year"></span> Management@w-wrentals.de
+</footer>
+</div>
+
+<footer>
+
+
+© <span id="year"></span> W&W Rentals – Ihre Untervermietungspartner
+</footer>
+</div>
+
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+
+const burger = document.getElementById('burger');
+burger.addEventListener('click', ()=>{
+const n = document.querySelector('nav');
+if(n.style.display === 'flex') n.style.display = 'none'; else n.style.display = 'flex';
+});
+
+
+const form = document.getElementById('contactForm');
+const msg = document.getElementById('formMsg');
+form.addEventListener('submit', (e)=>{
+e.preventDefault();
+msg.style.color = 'var(--accent)';
+msg.textContent = 'Vielen Dank! Ihre Anfrage wurde gesendet.';
+form.reset();
+setTimeout(()=>{ msg.textContent = ''; msg.style.color = ''; }, 5000);
+});
+</script>
+</body>
+</html>
